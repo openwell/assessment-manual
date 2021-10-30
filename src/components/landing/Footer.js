@@ -36,9 +36,14 @@ export default function Footer() {
         <div>
           <h6>Follow us</h6>
           <div>
-            <Image src={FacebookSrc} alt="manual logo" width={24} height={24} />
-            <Image src={GoogleSrc} alt="manual logo" width={24} height={24} />
-            <Image src={TwitterSrc} alt="manual logo" width={24} height={24} />
+            <Image
+              src={FacebookSrc}
+              alt="facebook icon"
+              width={24}
+              height={24}
+            />
+            <Image src={GoogleSrc} alt="google icon" width={24} height={24} />
+            <Image src={TwitterSrc} alt="twitter icon" width={24} height={24} />
           </div>
         </div>
       </LayerOne>

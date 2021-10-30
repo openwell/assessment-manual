@@ -13,7 +13,8 @@ export default function Quiz({
   const [questions, setQuestions] = useState([]);
   const [quesIndex, setQuesIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [disableNextBtn, setDisableNextBtn] = useState(true);
+
+  const questionLength = questions?.length;
 
   const cloneArrayHandler = (questionsArray) => {
     const clonedQues = questionsArray?.map((question) => {
@@ -35,12 +36,9 @@ export default function Quiz({
     return () => {};
   }, [memoizedQuestionCallback]);
 
-  const questionLength = questions?.length;
-
   const nextHandler = () => {
     if (quesIndex < questionLength - 1) {
       setQuesIndex((prev) => prev + 1);
-      setDisableNextBtn(true);
     } else {
       setShowResult(true);
     }
@@ -60,10 +58,7 @@ export default function Quiz({
     setQuestions(cloneState);
 
     if (!isRejection) {
-      setDisableNextBtn(false);
       nextHandler();
-    } else {
-      setDisableNextBtn(true);
     }
   };
   const endHandler = () => {
@@ -80,7 +75,6 @@ export default function Quiz({
         <Result endHandler={endHandler} />
       ) : (
         <Question
-          disableNextBtn={disableNextBtn}
           alphabetsArray={alphabetsArray}
           questionObject={questions[quesIndex]}
           quesIndex={quesIndex}

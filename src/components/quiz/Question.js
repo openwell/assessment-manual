@@ -13,12 +13,11 @@ export default function Question({
   quesIndex,
   selectedHandler,
   questionObject,
-  disableNextBtn,
 }) {
   const { question, options, selectedOptionIndex, isRejection } =
     questionObject;
   const showButton = quesIndex != 0;
-
+  const isBtnDisabled = selectedOptionIndex != undefined && !isRejection;
   return (
     <Container>
       <header>
@@ -79,12 +78,10 @@ export default function Question({
       )}
 
       <NavButtons showButton={showButton}>
-        {showButton && (
-          <MyPrevButton handler={prevHandler} disabled={disableNextBtn}>
-            Back
-          </MyPrevButton>
-        )}
-        <MyNextButton handler={nextHandler}>Proceed</MyNextButton>
+        {showButton && <MyPrevButton handler={prevHandler}>Back</MyPrevButton>}
+        <MyNextButton handler={nextHandler} disabled={!isBtnDisabled}>
+          Proceed
+        </MyNextButton>
       </NavButtons>
     </Container>
   );
