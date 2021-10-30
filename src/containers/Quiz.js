@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Overlay from '../components/quiz/Overlay';
 import Question from '../components/quiz/Question';
 import cloneDeep from 'lodash.clonedeep';
@@ -11,16 +11,22 @@ export default function Quiz({ LETTERS, questionsList, showModal, setModal }) {
     show: false,
     isRejection: undefined,
   });
-  useEffect(() => {
-    const cloneArray = () => {
-      const clonedQues = questionsList?.map((question) => {
-        return { ...question, selectedIndex: undefined };
-      });
-      setQuestions(clonedQues);
-    };
-    cloneArray();
-    return () => {};
+
+  const cloneArrayHandler = (questionsList) => {
+    const clonedQues = questionsList?.map((question) => {
+      return { ...question, selectedIndex: undefined };
+    });
+    setQuestions(clonedQues);
+  };
+
+  const memoizedQuestionCallback = useCallback(() => {
+    cloneArrayHandler(questionsList);
   }, [questionsList]);
+
+  useEffect(() => {
+    memoizedQuestionCallback();
+    return () => {};
+  }, [memoizedQuestionCallback]);
 
   const questionLength = questions?.length;
 
@@ -60,6 +66,8 @@ export default function Quiz({ LETTERS, questionsList, showModal, setModal }) {
       isRejection: undefined,
       show: false,
     }));
+    cloneArrayHandler(questionsList);
+    document.body.style.overflow = 'unset';
   };
 
   return (

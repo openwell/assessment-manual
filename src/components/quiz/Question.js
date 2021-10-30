@@ -61,7 +61,9 @@ export default function Question({
       )}
 
       <NavButtons>
-        {quesIndex && <MyPrevButton handler={prevHandler}>Back</MyPrevButton>}
+        {quesIndex != 0 && (
+          <MyPrevButton handler={prevHandler}>Back</MyPrevButton>
+        )}
         <MyNextButton
           handler={nextHandler}
           disabled={selectedIndex != undefined ? false : true}

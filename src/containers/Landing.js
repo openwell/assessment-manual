@@ -8,6 +8,7 @@ export default function Landing({ questionsList, LETTERS }) {
   const [showModal, setModal] = useState(false);
   const showModalHandler = () => {
     setModal(true);
+    document.body.style.overflow = 'hidden';
   };
 
   return (
