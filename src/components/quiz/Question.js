@@ -23,6 +23,16 @@ export default function Question({
       <header>
         <h4>{question}</h4>
       </header>
+      {disableNextBtn && (
+        <ErrorNotification>
+          <h5>
+            “Unfortunately, we are unable to prescribe this medication for you.
+            This is because finasteride can alter the PSA levels, which maybe
+            used to monitor for cancer. You should discuss this further with
+            your GP or specialist if you would still like this medication.”
+          </h5>
+        </ErrorNotification>
+      )}
 
       {typeof options[0].value == 'boolean' ? (
         <ChoiceWrapper>
@@ -39,7 +49,10 @@ export default function Question({
                   width={60}
                   height={60}
                 />
-                {elem.display} <ImageSpan>{alphabetsArray[i]}</ImageSpan>
+                <> {elem.display}</>
+                <ImageSpan selected={selectedOptionIndex == i ? true : false}>
+                  {alphabetsArray[i]}
+                </ImageSpan>
               </YesNoBox>
             );
           })}
@@ -55,7 +68,9 @@ export default function Question({
               >
                 <div>{parse(elem.display)}</div>
                 <ImageTitle>{elem.value}</ImageTitle>
-                <ImageSpan>{alphabetsArray[i]}</ImageSpan>
+                <ImageSpan selected={selectedOptionIndex == i ? true : false}>
+                  {alphabetsArray[i]}
+                </ImageSpan>
               </ImageWrapper>
             );
           })}
@@ -74,9 +89,16 @@ const Container = styled.section`
   max-width: 60rem;
   margin: 0 auto;
   h4 {
-    padding: 4rem 0;
+    padding: 2rem 0;
     text-align: center;
   }
+`;
+const ErrorNotification = styled.section`
+  color: ${({ theme }) => theme.colors.secondary};
+  text-align: center;
+  border: thin solid ${({ theme }) => theme.colors.secondary};
+  padding: 0.5rem;
+  margin-bottom: 1rem;
 `;
 const NavButtons = styled.section`
   display: flex;
@@ -143,4 +165,10 @@ const ImageSpan = styled.span`
   height: 2rem;
   font-weight: 600;
   font-size: 1rem;
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.white};
+    `}
 `;
