@@ -4,24 +4,27 @@ import Question from '../components/quiz/Question';
 import cloneDeep from 'lodash.clonedeep';
 import Result from '../components/quiz/Result';
 
-export default function Quiz({ LETTERS, questionsList, showModal, setModal }) {
+export default function Quiz({
+  alphabetsArray,
+  questionsArray,
+  showModal,
+  setModal,
+}) {
   const [questions, setQuestions] = useState([]);
   const [quesIndex, setQuesIndex] = useState(0);
-  const [showResult, setShowResult] = useState({
-    show: false,
-    isRejection: undefined,
-  });
+  const [showResult, setShowResult] = useState(false);
+  const [disableNextBtn, setDisableNextBtn] = useState(true);
 
-  const cloneArrayHandler = (questionsList) => {
-    const clonedQues = questionsList?.map((question) => {
-      return { ...question, selectedIndex: undefined };
+  const cloneArrayHandler = (questionsArray) => {
+    const clonedQues = questionsArray?.map((question) => {
+      return { ...question, selectedOptionIndex: undefined };
     });
     setQuestions(clonedQues);
   };
 
   const memoizedQuestionCallback = useCallback(() => {
-    cloneArrayHandler(questionsList);
-  }, [questionsList]);
+    cloneArrayHandler(questionsArray);
+  }, [questionsArray]);
 
   useEffect(() => {
     memoizedQuestionCallback();
@@ -34,10 +37,7 @@ export default function Quiz({ LETTERS, questionsList, showModal, setModal }) {
     if (quesIndex < questionLength - 1) {
       setQuesIndex((prev) => prev + 1);
     } else {
-      setShowResult((prev) => ({
-        ...prev,
-        show: true,
-      }));
+      setShowResult(true);
     }
   };
   const prevHandler = () => {
@@ -47,36 +47,34 @@ export default function Quiz({ LETTERS, questionsList, showModal, setModal }) {
   };
   const selectedHandler = (optionIndex) => {
     const cloneState = cloneDeep(questions);
-    cloneState[quesIndex].selectedIndex = optionIndex;
+    cloneState[quesIndex].selectedOptionIndex = optionIndex;
     setQuestions(cloneState);
 
     const isRejection = cloneState[quesIndex].options[optionIndex].isRejection;
-    if (isRejection) {
-      setShowResult((prev) => ({
-        ...prev,
-        isRejection: isRejection,
-      }));
+
+    if (!isRejection) {
+      setDisableNextBtn(false);
+      nextHandler();
+    } else {
+      setDisableNextBtn(true);
     }
-    nextHandler();
   };
   const endHandler = () => {
     setModal(false);
     setQuesIndex(0);
-    setShowResult((prev) => ({
-      isRejection: undefined,
-      show: false,
-    }));
-    cloneArrayHandler(questionsList);
+    setShowResult(false);
+    cloneArrayHandler(questionsArray);
     document.body.style.overflow = 'unset';
   };
 
   return (
     <Overlay showModal={showModal}>
-      {showResult.show ? (
-        <Result {...showResult} endHandler={endHandler} />
+      {showResult ? (
+        <Result endHandler={endHandler} />
       ) : (
         <Question
-          LETTERS={LETTERS}
+          disableNextBtn={disableNextBtn}
+          alphabetsArray={alphabetsArray}
           questionObject={questions[quesIndex]}
           quesIndex={quesIndex}
           prevHandler={prevHandler}

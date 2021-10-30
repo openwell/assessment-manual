@@ -1,4 +1,5 @@
-export const QUESTIONS_LIST = [
+export const alphabetsArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+export const questionsArray = [
   {
     question: 'Which image best matches your hair loss?',
     type: 'ChoiceType',

@@ -1,9 +1,8 @@
 import Head from 'next/head';
 import Landing from '../containers/Landing';
-import { QUESTIONS_LIST } from '../constants/sampleQuestions';
-import { LETTERS } from '../constants/letters';
+import { questionsArray, alphabetsArray } from '../constants';
 
-export default function Home({ questionsList, LETTERS }) {
+export default function Home({ questionsArray, alphabetsArray }) {
   return (
     <>
       <Head>
@@ -11,12 +10,15 @@ export default function Home({ questionsList, LETTERS }) {
         <meta name="description" content="Home" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Landing questionsList={questionsList} LETTERS={LETTERS} />
+      <Landing
+        questionsArray={questionsArray}
+        alphabetsArray={alphabetsArray}
+      />
     </>
   );
 }
 export async function getStaticProps(context) {
   return {
-    props: { questionsList: QUESTIONS_LIST, LETTERS: LETTERS },
+    props: { questionsArray, alphabetsArray },
   };
 }

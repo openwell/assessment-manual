@@ -43,7 +43,7 @@ export function MyPrevButton(props) {
 const ButtonIcon = styled.button`
   background-color: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.white};
-  padding: 0.8rem 2rem;
+  padding: 1rem 3rem;
   font-size: 1rem;
   border: thin solid transparent;
   margin-top: 2rem;

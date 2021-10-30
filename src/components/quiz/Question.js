@@ -8,14 +8,16 @@ import { MyNextButton, MyPrevButton } from '../common/Button';
 
 export default function Question({
   nextHandler,
-  LETTERS,
+  alphabetsArray,
   prevHandler,
   quesIndex,
   selectedHandler,
   questionObject,
+  disableNextBtn,
 }) {
-  const { question, options, selectedIndex } = questionObject;
+  const { question, options, selectedOptionIndex } = questionObject;
   const showButton = quesIndex != 0;
+
   return (
     <Container>
       <header>
@@ -29,7 +31,7 @@ export default function Question({
               <YesNoBox
                 key={'id_' + i}
                 onClick={() => selectedHandler(i)}
-                selected={selectedIndex == i ? true : false}
+                selected={selectedOptionIndex == i ? true : false}
               >
                 <Image
                   src={elem.display == 'Yes' ? YesSrc : NoSrc}
@@ -37,7 +39,7 @@ export default function Question({
                   width={60}
                   height={60}
                 />
-                {elem.display} <ImageSpan>{LETTERS[i]}</ImageSpan>
+                {elem.display} <ImageSpan>{alphabetsArray[i]}</ImageSpan>
               </YesNoBox>
             );
           })}
@@ -49,11 +51,11 @@ export default function Question({
               <ImageWrapper
                 key={'id_' + i}
                 onClick={() => selectedHandler(i)}
-                selected={selectedIndex == i ? true : false}
+                selected={selectedOptionIndex == i ? true : false}
               >
                 <div>{parse(elem.display)}</div>
                 <ImageTitle>{elem.value}</ImageTitle>
-                <ImageSpan>{LETTERS[i]}</ImageSpan>
+                <ImageSpan>{alphabetsArray[i]}</ImageSpan>
               </ImageWrapper>
             );
           })}
@@ -62,12 +64,7 @@ export default function Question({
 
       <NavButtons showButton={showButton}>
         {showButton && <MyPrevButton handler={prevHandler}>Back</MyPrevButton>}
-        <MyNextButton
-          handler={nextHandler}
-          disabled={selectedIndex != undefined ? false : true}
-        >
-          Proceed
-        </MyNextButton>
+        <MyNextButton disabled={disableNextBtn}>Proceed</MyNextButton>
       </NavButtons>
     </Container>
   );
