@@ -15,7 +15,7 @@ export default function Question({
   questionObject,
 }) {
   const { question, options, selectedIndex } = questionObject;
-
+  const showButton = quesIndex != 0;
   return (
     <Container>
       <header>
@@ -60,10 +60,8 @@ export default function Question({
         </ImageGrid>
       )}
 
-      <NavButtons>
-        {quesIndex != 0 && (
-          <MyPrevButton handler={prevHandler}>Back</MyPrevButton>
-        )}
+      <NavButtons showButton={showButton}>
+        {showButton && <MyPrevButton handler={prevHandler}>Back</MyPrevButton>}
         <MyNextButton
           handler={nextHandler}
           disabled={selectedIndex != undefined ? false : true}
@@ -87,6 +85,11 @@ const NavButtons = styled.section`
   display: flex;
   justify-content: space-between;
   margin: 5rem 0;
+  ${({ showButton }) =>
+    !showButton &&
+    css`
+      justify-content: center;
+    `}
 `;
 const ChoiceWrapper = styled.section`
   display: flex;

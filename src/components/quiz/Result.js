@@ -23,7 +23,7 @@ export default function Feedback({ isRejection, endHandler }) {
           <Image src={SmileSrc} alt="smile-face" width={80} height={80} />
           <h4>
             “Great news! We have the perfect treatment for your hair loss.
-            Proceed to <SpanLink onClick={endHandler}>www.manual.co</SpanLink> ,
+            Proceed to <SpanLink onClick={endHandler}>www.manual.co</SpanLink>,
             and prepare to say hello to your new hair!”
           </h4>
           <ButtonWrapper>
