@@ -17,7 +17,11 @@ export default function Quiz({
 
   const cloneArrayHandler = (questionsArray) => {
     const clonedQues = questionsArray?.map((question) => {
-      return { ...question, selectedOptionIndex: undefined };
+      return {
+        ...question,
+        selectedOptionIndex: undefined,
+        isRejection: false,
+      };
     });
     setQuestions(clonedQues);
   };
@@ -36,6 +40,7 @@ export default function Quiz({
   const nextHandler = () => {
     if (quesIndex < questionLength - 1) {
       setQuesIndex((prev) => prev + 1);
+      setDisableNextBtn(true);
     } else {
       setShowResult(true);
     }
@@ -47,10 +52,12 @@ export default function Quiz({
   };
   const selectedHandler = (optionIndex) => {
     const cloneState = cloneDeep(questions);
-    cloneState[quesIndex].selectedOptionIndex = optionIndex;
-    setQuestions(cloneState);
-
     const isRejection = cloneState[quesIndex].options[optionIndex].isRejection;
+
+    cloneState[quesIndex].selectedOptionIndex = optionIndex;
+    cloneState[quesIndex].isRejection = isRejection;
+
+    setQuestions(cloneState);
 
     if (!isRejection) {
       setDisableNextBtn(false);

@@ -43,18 +43,19 @@ export function MyPrevButton(props) {
 const ButtonIcon = styled.button`
   background-color: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.white};
-  padding: 1rem 3rem;
-  font-size: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
   border: thin solid transparent;
   margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 12rem;
-  width: 100%;
   cursor: pointer;
   &:hover:enabled {
     opacity: 0.8;
+  }
+  span {
+    padding: 0 0.4rem !important;
   }
   ${({ disabled }) =>
     disabled &&
@@ -62,4 +63,8 @@ const ButtonIcon = styled.button`
       opacity: 0.5;
       cursor: not-allowed;
     `}
+`;
+const ImageWrapper = styled.figure`
+  padding: 0 0.5rem;
+  align-self: center;
 `;

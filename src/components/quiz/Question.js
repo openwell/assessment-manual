@@ -15,16 +15,16 @@ export default function Question({
   questionObject,
   disableNextBtn,
 }) {
-  const { question, options, selectedOptionIndex } = questionObject;
+  const { question, options, selectedOptionIndex, isRejection } =
+    questionObject;
   const showButton = quesIndex != 0;
-  const showNotification =
-    selectedOptionIndex != undefined && disableNextBtn ? true : false;
+
   return (
     <Container>
       <header>
         <h4>{question}</h4>
       </header>
-      {showNotification && (
+      {isRejection && (
         <ErrorNotification>
           <h5>
             “Unfortunately, we are unable to prescribe this medication for you.
@@ -79,8 +79,12 @@ export default function Question({
       )}
 
       <NavButtons showButton={showButton}>
-        {showButton && <MyPrevButton handler={prevHandler}>Back</MyPrevButton>}
-        <MyNextButton disabled={disableNextBtn}>Proceed</MyNextButton>
+        {showButton && (
+          <MyPrevButton handler={prevHandler} disabled={disableNextBtn}>
+            Back
+          </MyPrevButton>
+        )}
+        <MyNextButton handler={nextHandler}>Proceed</MyNextButton>
       </NavButtons>
     </Container>
   );
