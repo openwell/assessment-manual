@@ -4,25 +4,26 @@ import Question from '../components/quiz/Question';
 import cloneDeep from 'lodash.clonedeep';
 import Result from '../components/quiz/Result';
 
-export default function Quiz({ LETTERS, questionList }) {
+export default function Quiz({ LETTERS, questionsList, showModal, setModal }) {
   const [questions, setQuestions] = useState([]);
   const [quesIndex, setQuesIndex] = useState(0);
-  const [showModal, setModal] = useState(true);
   const [showResult, setShowResult] = useState({
     show: false,
     isRejection: undefined,
   });
   useEffect(() => {
     const cloneArray = () => {
-      const clonedQues = questionList.map((question) => {
+      const clonedQues = questionsList?.map((question) => {
         return { ...question, selectedIndex: undefined };
       });
       setQuestions(clonedQues);
     };
     cloneArray();
     return () => {};
-  }, [questionList]);
-  const questionLength = questions.length;
+  }, [questionsList]);
+
+  const questionLength = questions?.length;
+
   const nextHandler = () => {
     if (quesIndex < questionLength - 1) {
       setQuesIndex((prev) => prev + 1);
@@ -53,8 +54,12 @@ export default function Quiz({ LETTERS, questionList }) {
     nextHandler();
   };
   const endHandler = () => {
-    console.log('en');
     setModal(false);
+    setQuesIndex(0);
+    setShowResult((prev) => ({
+      isRejection: undefined,
+      show: false,
+    }));
   };
 
   return (

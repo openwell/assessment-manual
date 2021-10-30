@@ -23,12 +23,12 @@ export default function Feedback({ isRejection, endHandler }) {
           <Image src={SmileSrc} alt="smile-face" width={80} height={80} />
           <h4>
             “Great news! We have the perfect treatment for your hair loss.
-            Proceed to <SpanLink onClick={endHandler}>www.manual.co</SpanLink>,
+            Proceed to <SpanLink onClick={endHandler}>www.manual.co</SpanLink> ,
             and prepare to say hello to your new hair!”
           </h4>
-          <div>
+          <ButtonWrapper>
             <MyNextButton handler={endHandler}>Proceed</MyNextButton>
-          </div>
+          </ButtonWrapper>
         </PositiveFeedback>
       )}
     </Container>
@@ -57,4 +57,8 @@ const SpanLink = styled.span`
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
+`;
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;

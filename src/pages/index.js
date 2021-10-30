@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Landing from '../containers/Landing';
-import Quiz from '../containers/Quiz';
-import { QUESTIONS_LIST } from '../components/quiz/sampleQuestions';
+import { QUESTIONS_LIST } from '../constants/sampleQuestions';
 import { LETTERS } from '../constants/letters';
 
 export default function Home({ questionsList, LETTERS }) {
@@ -12,8 +11,7 @@ export default function Home({ questionsList, LETTERS }) {
         <meta name="description" content="Home" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Landing />
-      <Quiz questionList={questionsList} LETTERS={LETTERS} />
+      <Landing questionsList={questionsList} LETTERS={LETTERS} />
     </>
   );
 }

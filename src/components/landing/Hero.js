@@ -4,7 +4,7 @@ import LogoSrc from '../../assets/svgs/logo.svg';
 import BgSrc from '../../assets/images/hero-bg.png';
 import { MyButton } from '../common/Button';
 
-export default function HeroSection() {
+export default function HeroSection({ showModalHandler }) {
   return (
     <Container>
       <figure>
@@ -18,7 +18,7 @@ export default function HeroSection() {
           We’re working around the clock to bring you a holistic approach to
           your wellness. From top to bottom, inside and out.
         </p>
-        <MyButton>TAKE THE QUIZ</MyButton>
+        <MyButton handler={showModalHandler}>TAKE THE QUIZ</MyButton>
       </Content>
     </Container>
   );
