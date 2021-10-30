@@ -52,6 +52,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   button{
     font-family: 'TTNorms-Medium';
+    font-variant-ligatures: no-common-ligatures;
   }
   h1,h2,h3,h4,h5{
     font-family: 'TTNorms-Medium';

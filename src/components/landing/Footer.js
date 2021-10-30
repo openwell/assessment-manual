@@ -51,7 +51,7 @@ export default function Footer() {
 
 const Container = styled.footer`
   padding: 0 13rem;
-  background-color: ${({ theme }) => theme.colors.bg1};
+  background-color: ${({ theme }) => theme.colors.lightGreen};
   @media ${({ theme }) => theme.media.mobile} {
     padding: 0;
   }

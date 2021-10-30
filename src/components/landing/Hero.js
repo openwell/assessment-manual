@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import LogoSrc from '../../assets/svgs/logo.svg';
 import BgSrc from '../../assets/images/hero-bg.png';
+import { MyButton } from '../common/Button';
 
 export default function HeroSection() {
   return (
@@ -17,7 +18,7 @@ export default function HeroSection() {
           We’re working around the clock to bring you a holistic approach to
           your wellness. From top to bottom, inside and out.
         </p>
-        <Button>TAKE THE QUIZ</Button>
+        <MyButton>TAKE THE QUIZ</MyButton>
       </Content>
     </Container>
   );
@@ -45,12 +46,4 @@ const Content = styled.section`
       font-size: 6rem;
     }
   }
-`;
-const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.white};
-  padding: 1.5rem 3rem;
-  font-size: 1rem;
-  border: thin solid transparent;
-  margin-top: 2rem;
 `;
