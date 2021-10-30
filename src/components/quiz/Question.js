@@ -17,13 +17,14 @@ export default function Question({
 }) {
   const { question, options, selectedOptionIndex } = questionObject;
   const showButton = quesIndex != 0;
-
+  const showNotification =
+    selectedOptionIndex != undefined && disableNextBtn ? true : false;
   return (
     <Container>
       <header>
         <h4>{question}</h4>
       </header>
-      {disableNextBtn && (
+      {showNotification && (
         <ErrorNotification>
           <h5>
             “Unfortunately, we are unable to prescribe this medication for you.
@@ -66,7 +67,7 @@ export default function Question({
                 onClick={() => selectedHandler(i)}
                 selected={selectedOptionIndex == i ? true : false}
               >
-                <div>{parse(elem.display)}</div>
+                {parse(elem.display)}
                 <ImageTitle>{elem.value}</ImageTitle>
                 <ImageSpan selected={selectedOptionIndex == i ? true : false}>
                   {alphabetsArray[i]}
@@ -125,6 +126,9 @@ const YesNoBox = styled.button`
   color: ${({ theme }) => theme.colors.primary};
   border: thin solid ${({ theme }) => theme.colors.white};
   cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
   ${({ selected }) =>
     selected &&
     css`
@@ -149,6 +153,9 @@ const ImageWrapper = styled.figure`
   text-align: center;
   cursor: pointer;
   border: thin solid ${({ theme }) => theme.colors.white};
+  &:hover {
+    opacity: 0.5;
+  }
   ${({ selected }) =>
     selected &&
     css`
