@@ -25,7 +25,9 @@ export default function HeroSection({ showModalHandler }) {
 }
 
 const Container = styled.header`
-  background: url('${BgSrc.src}') no-repeat;
+  background: no-repeat url('${BgSrc.src}');
+  /* background-size: cover; */
+  /* background-origin: left 5% / 15%; */
   height: 75rem;
   padding-top: 3rem;
   padding-left: 10%;

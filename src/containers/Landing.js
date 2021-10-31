@@ -4,7 +4,7 @@ import Main from '../components/landing/Main';
 import Footer from '../components/landing/Footer';
 import Quiz from './Quiz';
 
-export default function Landing({ questionsArray, alphabetsArray }) {
+export default function Landing({ questionsArray }) {
   const [showModal, setModal] = useState(false);
   const showModalHandler = () => {
     setModal(true);
@@ -18,7 +18,6 @@ export default function Landing({ questionsArray, alphabetsArray }) {
       <Footer />
       <Quiz
         questionsArray={questionsArray}
-        alphabetsArray={alphabetsArray}
         showModal={showModal}
         setModal={setModal}
       />

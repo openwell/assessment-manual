@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Landing from '../containers/Landing';
-import { questionsArray, alphabetsArray } from '../constants';
+// import { questionsArray } from '../constants';
 
-export default function Home({ questionsArray, alphabetsArray }) {
+export default function Home({ questionsArray }) {
   return (
     <>
       <Head>
@@ -10,15 +10,22 @@ export default function Home({ questionsArray, alphabetsArray }) {
         <meta name="description" content="Home" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Landing
-        questionsArray={questionsArray}
-        alphabetsArray={alphabetsArray}
-      />
+      <Landing questionsArray={questionsArray} />
     </>
   );
 }
-export async function getStaticProps(context) {
+// export async function getStaticProps(context) {
+//   return {
+//     props: { questionsArray},
+//   };
+// }
+export async function getServerSideProps(context) {
+  const res = await fetch(
+    'https://manual-case-study.herokuapp.com/questionnaires/972423.json'
+  );
+  const { questions } = await res.json();
+
   return {
-    props: { questionsArray, alphabetsArray },
+    props: { questionsArray: questions },
   };
 }

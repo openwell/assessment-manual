@@ -5,10 +5,10 @@ import parse from 'html-react-parser';
 import YesSrc from '../../assets/svgs/correct.svg';
 import NoSrc from '../../assets/svgs/wrong.svg';
 import { MyNextButton, MyPrevButton } from '../common/Button';
+import { alphabetsArray } from '../../constants';
 
 export default function Question({
   nextHandler,
-  alphabetsArray,
   prevHandler,
   quesIndex,
   selectedHandler,
@@ -37,11 +37,12 @@ export default function Question({
       {typeof options[0].value == 'boolean' ? (
         <ChoiceWrapper>
           {options.map((elem, i) => {
+            const isSelected = selectedOptionIndex == i ? true : false;
             return (
               <YesNoBox
                 key={'id_' + i}
                 onClick={() => selectedHandler(i)}
-                selected={selectedOptionIndex == i ? true : false}
+                selected={isSelected}
               >
                 <Image
                   src={elem.display == 'Yes' ? YesSrc : NoSrc}
@@ -50,9 +51,7 @@ export default function Question({
                   height={60}
                 />
                 <> {elem.display}</>
-                <ImageSpan selected={selectedOptionIndex == i ? true : false}>
-                  {alphabetsArray[i]}
-                </ImageSpan>
+                <ImageSpan selected={isSelected}>{alphabetsArray[i]}</ImageSpan>
               </YesNoBox>
             );
           })}
@@ -60,17 +59,16 @@ export default function Question({
       ) : (
         <ImageGrid>
           {options.map((elem, i) => {
+            const isSelected = selectedOptionIndex == i ? true : false;
             return (
               <ImageWrapper
                 key={'id_' + i}
                 onClick={() => selectedHandler(i)}
-                selected={selectedOptionIndex == i ? true : false}
+                selected={isSelected}
               >
                 {parse(elem.display)}
                 <ImageTitle>{elem.value}</ImageTitle>
-                <ImageSpan selected={selectedOptionIndex == i ? true : false}>
-                  {alphabetsArray[i]}
-                </ImageSpan>
+                <ImageSpan selected={isSelected}>{alphabetsArray[i]}</ImageSpan>
               </ImageWrapper>
             );
           })}

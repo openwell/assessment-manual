@@ -4,12 +4,7 @@ import Question from '../components/quiz/Question';
 import cloneDeep from 'lodash.clonedeep';
 import Result from '../components/quiz/Result';
 
-export default function Quiz({
-  alphabetsArray,
-  questionsArray,
-  showModal,
-  setModal,
-}) {
+export default function Quiz({ questionsArray, showModal, setModal }) {
   const [questions, setQuestions] = useState([]);
   const [quesIndex, setQuesIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
@@ -75,7 +70,6 @@ export default function Quiz({
         <Result endHandler={endHandler} />
       ) : (
         <Question
-          alphabetsArray={alphabetsArray}
           questionObject={questions[quesIndex]}
           quesIndex={quesIndex}
           prevHandler={prevHandler}
