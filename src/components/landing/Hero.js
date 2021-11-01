@@ -3,6 +3,7 @@ import Image from 'next/image';
 import LogoSrc from '../../assets/svgs/logo.svg';
 import BgSrc from '../../assets/images/hero-bg.png';
 import { MyButton } from '../common/Button';
+import PropTypes from 'prop-types';
 
 export default function HeroSection({ showModalHandler }) {
   return (
@@ -26,8 +27,6 @@ export default function HeroSection({ showModalHandler }) {
 
 const Container = styled.header`
   background: no-repeat url('${BgSrc.src}');
-  /* background-size: cover; */
-  /* background-origin: left 5% / 15%; */
   height: 75rem;
   padding-top: 3rem;
   padding-left: 10%;
@@ -49,3 +48,6 @@ const Content = styled.section`
     }
   }
 `;
+HeroSection.propTypes = {
+  showModalHandler: PropTypes.func.isRequired,
+};

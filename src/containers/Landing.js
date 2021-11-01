@@ -3,6 +3,7 @@ import Hero from '../components/landing/Hero';
 import Main from '../components/landing/Main';
 import Footer from '../components/landing/Footer';
 import Quiz from './Quiz';
+import PropTypes from 'prop-types';
 
 export default function Landing({ questionsArray }) {
   const [showModal, setModal] = useState(false);
@@ -24,3 +25,6 @@ export default function Landing({ questionsArray }) {
     </>
   );
 }
+Landing.propTypes = {
+  questionsArray: PropTypes.array.isRequired,
+};

@@ -17,16 +17,12 @@ const customStyles = {
   },
 };
 
-export default function OverLay(props) {
-  const { children, showModal } = props;
-
+export default function OverLay({ children, showModal }) {
   return (
     <div>
       <Modal
         ariaHideApp={false}
         isOpen={showModal}
-        // onAfterOpen={afterOpenModal}
-        // onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Quiz Modal"
       >
@@ -39,4 +35,5 @@ export default function OverLay(props) {
 
 OverLay.propTypes = {
   children: PropTypes.node.isRequired,
+  showModal: PropTypes.bool.isRequired,
 };

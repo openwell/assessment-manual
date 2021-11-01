@@ -6,6 +6,7 @@ import YesSrc from '../../assets/svgs/correct.svg';
 import NoSrc from '../../assets/svgs/wrong.svg';
 import { MyNextButton, MyPrevButton } from '../common/Button';
 import { alphabetsArray } from '../../constants';
+import PropTypes from 'prop-types';
 
 export default function Question({
   nextHandler,
@@ -178,3 +179,13 @@ const ImageSpan = styled.span`
       color: ${({ theme }) => theme.colors.white};
     `}
 `;
+
+Question.propTypes = {
+  children: PropTypes.node,
+  showModal: PropTypes.bool,
+  nextHandler: PropTypes.func.isRequired,
+  prevHandler: PropTypes.func.isRequired,
+  quesIndex: PropTypes.number.isRequired,
+  selectedHandler: PropTypes.func.isRequired,
+  questionObject: PropTypes.object,
+};

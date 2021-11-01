@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import ArrowRight from '../../assets/svgs/arrow-right.svg';
 import ArrowLeft from '../../assets/svgs/arrow-left.svg';
+import PropTypes from 'prop-types';
 
 export function MyButton(props) {
   const { children, handler } = props;
@@ -20,9 +21,12 @@ const BaseButton = styled.button`
     opacity: 0.8;
   }
 `;
+MyButton.propTypes = {
+  handler: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
-export function MyNextButton(props) {
-  const { children, handler, disabled } = props;
+export function MyNextButton({ children, handler, disabled }) {
   return (
     <ButtonIcon onClick={handler} disabled={disabled}>
       {children}
@@ -30,8 +34,13 @@ export function MyNextButton(props) {
     </ButtonIcon>
   );
 }
-export function MyPrevButton(props) {
-  const { children, handler } = props;
+MyNextButton.propTypes = {
+  handler: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
+};
+
+export function MyPrevButton({ children, handler }) {
   return (
     <ButtonIcon onClick={handler}>
       <Image src={ArrowLeft} alt="arrow-left" width={15} height={15} />
@@ -39,6 +48,10 @@ export function MyPrevButton(props) {
     </ButtonIcon>
   );
 }
+MyPrevButton.propTypes = {
+  handler: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 const ButtonIcon = styled.button`
   background-color: ${({ theme }) => theme.colors.secondary};

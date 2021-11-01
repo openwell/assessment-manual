@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import SmileSrc from '../../assets/images/smile-face.png';
 import Image from 'next/image';
 import { MyNextButton } from '../common/Button';
+import PropTypes from 'prop-types';
 
-export default function Feedback({ endHandler }) {
+export default function Result({ endHandler }) {
   return (
     <Container>
       <Image src={SmileSrc} alt="smile-face" width={80} height={80} />
@@ -35,3 +36,7 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+Result.propTypes = {
+  endHandler: PropTypes.func.isRequired,
+};

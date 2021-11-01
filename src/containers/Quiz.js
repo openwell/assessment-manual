@@ -3,6 +3,7 @@ import Overlay from '../components/quiz/Overlay';
 import Question from '../components/quiz/Question';
 import cloneDeep from 'lodash.clonedeep';
 import Result from '../components/quiz/Result';
+import PropTypes from 'prop-types';
 
 export default function Quiz({ questionsArray, showModal, setModal }) {
   const [questions, setQuestions] = useState([]);
@@ -81,3 +82,8 @@ export default function Quiz({ questionsArray, showModal, setModal }) {
     </Overlay>
   );
 }
+Quiz.propTypes = {
+  questionsArray: PropTypes.array.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  setModal: PropTypes.func.isRequired,
+};
