@@ -62,6 +62,7 @@ export default function Quiz({ questionsArray, showModal, setModal }) {
     setShowResult(false);
     cloneArrayHandler(questionsArray);
     document.body.style.overflow = 'unset';
+    window.open('https://www.manual.co', '_blank');
   };
 
   return (
