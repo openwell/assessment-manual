@@ -55,7 +55,7 @@ export default function Footer() {
 }
 
 const Container = styled.footer`
-  padding: 0 13rem;
+  padding: 0 9.4%;
   background-color: ${({ theme }) => theme.colors.lightGreen};
   @media ${({ theme }) => theme.media.mobile} {
     padding: 0;
@@ -67,11 +67,11 @@ const LayerOne = styled.section`
   grid-template-columns: 2fr 0.5fr 0.5fr 1.5fr 1.5fr;
   display: grid;
   padding: 7rem 1rem;
-  @media ${({ theme }) => theme.media.mobile} {
+  grid-gap: 2rem;
+  @media ${({ theme }) => theme.media.tablet} {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-row-gap: 2rem;
     & > figure {
-      grid-column: 1 / 3;
+      grid-column: 1 / -1;
       text-align: center;
     }
   }
@@ -90,7 +90,7 @@ const LayerOne = styled.section`
   }
   div:nth-of-type(3) {
     justify-self: center;
-    @media ${({ theme }) => theme.media.mobile} {
+    @media ${({ theme }) => theme.media.table} {
       justify-self: start;
     }
   }

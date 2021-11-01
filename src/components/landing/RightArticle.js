@@ -37,6 +37,7 @@ const Article = styled.article`
   @media ${({ theme }) => theme.media.mobile} {
     margin: 5rem 0;
     flex-direction: column-reverse;
+    align-items: center;
   }
 `;
 
