@@ -84,7 +84,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   h6 {
     font-family: 'TTNorms-Bold';
-    font-size: 1rem;
+    font-size: 10px;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.accent};
     text-transform: uppercase;

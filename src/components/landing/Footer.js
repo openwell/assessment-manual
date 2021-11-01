@@ -70,6 +70,7 @@ const LayerOne = styled.section`
   grid-gap: 2rem;
   @media ${({ theme }) => theme.media.tablet} {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    padding: 7rem 2rem;
     & > figure {
       grid-column: 1 / -1;
       text-align: center;
