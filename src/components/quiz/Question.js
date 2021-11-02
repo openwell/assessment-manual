@@ -147,7 +147,7 @@ const ImageGrid = styled.section`
   margin: 0 auto;
 `;
 
-const ImageWrapper = styled.figure`
+const ImageWrapper = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
   position: relative;
   text-align: center;
